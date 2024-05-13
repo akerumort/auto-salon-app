@@ -1,0 +1,38 @@
+﻿<Window x:Class="AutoSalonApp.Views.SearchOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Расш. поиск" MinHeight="150" MinWidth="300" MaxHeight="150" MaxWidth="300"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="SingleBorderWindow">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Icon>
+        <BitmapImage UriSource="Images/logo.png"/> 
+    </Window.Icon>
+    
+    <Grid Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="ColumnComboBox" Grid.Row="0" Margin="5" Width="200">
+            <ComboBoxItem Content="ID заказа"/>
+            <ComboBoxItem Content="ID машины"/>
+            <ComboBoxItem Content="Машина"/>
+            <ComboBoxItem Content="Дата заказа"/>
+            <ComboBoxItem Content="Оплата"/>
+            <ComboBoxItem Content="Срок кредита"/>
+        </ComboBox>
+        
+        <Button x:Name="ResetButton" Content="Сбросить" Grid.Row="1" Click="ResetButton_Click" Margin="5"
+                Width="200" Style="{StaticResource OtherButtonStyle}"/>
+        <Button x:Name="SearchButton" Content="Поиск" Grid.Row="2" Click="SearchButton_Click"
+                Margin="5" Width="200"/>
+    </Grid>
+</Window>
