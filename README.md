@@ -43,7 +43,6 @@ AutoSalonApp\AutoSalonApp_setup\Debug
 *   C# (.NET 8.0)
 *   Microsoft Entity Framework
 *   SQLite
-*   MySQL
 *   WPF
 *   Doxygen
   
