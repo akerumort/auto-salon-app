@@ -45,6 +45,7 @@ AutoSalonApp\AutoSalonApp_setup\Debug
 *   SQLite
 *   WPF
 *   Doxygen
+*   MVC
   
 <h2>🛡️ Лицензия / License: </h2>
 
