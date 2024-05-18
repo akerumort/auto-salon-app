@@ -59,6 +59,12 @@ public partial class MainWindow : Window
 
     private void DeleteDatabaseButton_Click(object sender, RoutedEventArgs e)
     {
+        if (!_controller.IsDatabaseCreated())
+        {
+            MessageBox.Show("Базы данных не существует, поэтому удаление невозможно.");
+            return;
+        }
+        
         MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить базу данных?",
             "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
         if (result == MessageBoxResult.Yes)
@@ -72,12 +78,7 @@ public partial class MainWindow : Window
     
     private void AddCarButton_Click(object sender, RoutedEventArgs e)
     {
-        if (!_controller.IsDatabaseCreated())
-        {
-            MessageBox.Show("Для добавления машины сначала нужно создать базу данных!");
-            return;
-        }
-        
+        if (!_controller.CheckDatabaseExistence()) return;
         AddCarWindow addCarWindow = new AddCarWindow(_controller.GetContext());
         addCarWindow.ShowDialog();
         RefreshCarsDataGrid();
@@ -85,6 +86,7 @@ public partial class MainWindow : Window
     
     private void PlaceOrderButton_Click(object sender, RoutedEventArgs e)
     {
+        if (!_controller.CheckDatabaseExistence()) return;
         _controller.PlaceOrder();
         RefreshCarsDataGrid();
         UpdateSalesChart();
@@ -92,6 +94,7 @@ public partial class MainWindow : Window
     
     private void EditCarButton_Click(object sender, RoutedEventArgs e)
     {
+        if (!_controller.CheckDatabaseExistence()) return;
         // Проверяем, была ли выбрана строка в таблице
         if (CarsDataGrid.SelectedItem != null)
         {
@@ -111,6 +114,8 @@ public partial class MainWindow : Window
 
     private void EditOrderButton_Click(object sender, RoutedEventArgs e)
     {
+        if (!_controller.CheckDatabaseExistence()) return;
+        
         if (OrdersDataGrid.SelectedItem != null)
         {
             Order selectedOrder = (Order)OrdersDataGrid.SelectedItem;
@@ -133,6 +138,7 @@ public partial class MainWindow : Window
     
     private void SearchButton_Click(object sender, RoutedEventArgs e)
     {
+        if (!_controller.CheckDatabaseExistence()) return;
         // Создаем экземпляр окна поиска, передавая ссылку на главное окно
         SearchOrderWindow searchOrderWindow = new SearchOrderWindow(this);
         searchOrderWindow.SearchCompleted += SearchOrderWindow_SearchCompleted; // Добавляем обработчик события
@@ -141,6 +147,7 @@ public partial class MainWindow : Window
     
     private void SearchAllButton_Click(object sender, RoutedEventArgs e)
     {
+        if (!_controller.CheckDatabaseExistence()) return;
         // Получаем текст для поиска из TextBox в MainWindow
         string searchText = SearchTextBox.Text;
 
@@ -160,6 +167,7 @@ public partial class MainWindow : Window
     
     private void SearchAllCarsButton_Click(object sender, RoutedEventArgs e)
     {
+        if (!_controller.CheckDatabaseExistence()) return;
         // Получаем текст для поиска из TextBox в MainWindow
         string searchText = SearchCarTextBox.Text;
 
@@ -181,6 +189,7 @@ public partial class MainWindow : Window
     {
         try
         {
+            if (!_controller.CheckDatabaseExistence()) return;
             _controller.SaveDatabaseToJson();
         }
         catch (Exception ex)
@@ -191,6 +200,7 @@ public partial class MainWindow : Window
     
     private void SearchCarButton_Click(object sender, RoutedEventArgs e)
     {
+        if (!_controller.CheckDatabaseExistence()) return;
         // Создаем экземпляр окна расширенного поиска машин, передавая ссылку на главное окно
         SearchCarWindow searchCarWindow = new SearchCarWindow(this);
         searchCarWindow.SearchCompleted += SearchCarWindow_SearchCompleted; // Добавляем обработчик события

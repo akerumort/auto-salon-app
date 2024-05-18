@@ -85,6 +85,31 @@ public partial class EditOrderWindow : Window
         }
     }
 
+    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить этот заказ?",
+            "Подтверждение удаления", MessageBoxButton.YesNo);
+        if (result == MessageBoxResult.Yes)
+        {
+            try
+            {
+                _controller.DeleteOrder(_selectedOrder);
+                MessageBox.Show("Заказ успешно удален.");
+                OrderSaved?.Invoke(this, EventArgs.Empty);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при удалении заказа: {ex.Message}");
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Обработчик события изменения выбранного элемента в ComboBox для типа оплаты.
+    /// </summary>
+    /// <param name="sender">Источник события.</param>
+    /// <param name="e">Аргументы события.</param>
     private void PaymentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         ComboBoxItem selectedItem = (ComboBoxItem)PaymentComboBox.SelectedItem;
@@ -118,25 +143,6 @@ public partial class EditOrderWindow : Window
         else
         {
             MessageBox.Show("Выберите тип оплаты.");
-        }
-    }
-    
-    private void DeleteButton_Click(object sender, RoutedEventArgs e)
-    {
-        MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить этот заказ?",
-            "Подтверждение удаления", MessageBoxButton.YesNo);
-        if (result == MessageBoxResult.Yes)
-        {
-            try
-            {
-                _controller.DeleteOrder(_selectedOrder);
-                MessageBox.Show("Заказ успешно удален.");
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при удалении заказа: {ex.Message}");
-            }
         }
     }
     

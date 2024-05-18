@@ -55,7 +55,6 @@ public class EditOrderWindowController
             return false;
         }
     }
-
     
     /// <summary>
     /// Метод для удаления заказа.
@@ -80,7 +79,6 @@ public class EditOrderWindowController
                 }
 
                 _context.SaveChanges();
-            
             }
             else
             {
