@@ -95,16 +95,23 @@ public partial class MainWindow : Window
     private void EditCarButton_Click(object sender, RoutedEventArgs e)
     {
         if (!_controller.CheckDatabaseExistence()) return;
+
         // Проверяем, была ли выбрана строка в таблице
         if (CarsDataGrid.SelectedItem != null)
         {
-            Car selectedCar = (Car)CarsDataGrid.SelectedItem;
-            
-            EditCarWindow editCarWindow = new EditCarWindow(selectedCar, _controller.GetContext());
-            
-            editCarWindow.ShowDialog();
-            
-            RefreshCarsDataGrid();
+            // Проверяем тип выбранного объекта
+            if (CarsDataGrid.SelectedItem is Car selectedCar)
+            {
+                EditCarWindow editCarWindow = new EditCarWindow(selectedCar, _controller.GetContext());
+
+                editCarWindow.ShowDialog();
+
+                RefreshCarsDataGrid();
+            }
+            else
+            {
+                MessageBox.Show("Выберите корректную машину для редактирования.");
+            }
         }
         else
         {
@@ -115,20 +122,28 @@ public partial class MainWindow : Window
     private void EditOrderButton_Click(object sender, RoutedEventArgs e)
     {
         if (!_controller.CheckDatabaseExistence()) return;
-        
+
+        // Проверяем, была ли выбрана строка в таблице
         if (OrdersDataGrid.SelectedItem != null)
         {
-            Order selectedOrder = (Order)OrdersDataGrid.SelectedItem;
-            EditOrderWindow editOrderWindow = new EditOrderWindow(selectedOrder, _controller.GetContext());
-
-            // Обработчик события сохранения изменений
-            editOrderWindow.OrderSaved += (o, args) =>
+            // Проверяем тип выбранного объекта
+            if (OrdersDataGrid.SelectedItem is Order selectedOrder)
             {
-                RefreshOrdersDataGrid(); 
-                RefreshCarsDataGrid(); 
-            };
-            
-            editOrderWindow.ShowDialog();
+                EditOrderWindow editOrderWindow = new EditOrderWindow(selectedOrder, _controller.GetContext());
+
+                // Обработчик события сохранения изменений
+                editOrderWindow.OrderSaved += (o, args) =>
+                {
+                    RefreshOrdersDataGrid(); 
+                    RefreshCarsDataGrid(); 
+                };
+
+                editOrderWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Выберите корректный заказ для редактирования.");
+            }
         }
         else
         {
