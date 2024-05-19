@@ -1,6 +1,6 @@
 <h1 align="center" id="title">AutoSalonApp</h1>
 
-<p align="center"><img src="https://socialify.git.ci/akerumort/AutoSalonApp/image?font=Jost&language=1&name=1&owner=1&pattern=Formal%20Invitation&stargazers=1&theme=Light" alt="project-image"></p>
+<p align="center"><img src="https://socialify.git.ci/akerumort/AutoSalonApp/image?font=Jost&language=1&name=1&owner=1&pattern=Formal%20Invitation&theme=Light" alt="project-image"></p>
 <p id="description"> Приложение представляет собой модель базы данных автосалона с удобным пользовательским интерфейсом. Оно позволяет пользователю работать с данными о машинах и заказах (добавлять, редактировать, удалять). В качестве базы даныых используется SQLite. 
   Данный проект является курсовым в 4 семестре по предмету "ООП" (ПГУ, "Программная инженерия)".
 </p>
