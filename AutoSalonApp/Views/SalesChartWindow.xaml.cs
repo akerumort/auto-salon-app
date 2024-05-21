@@ -26,7 +26,7 @@ public partial class SalesChartWindow : Window
     }
 
     /// <summary>
-    /// Обновляет данные на диаграмме продаж.
+    /// Метод, который обновляет данные на диаграмме продаж.
     /// </summary>
     private void UpdateSalesChart()
     {
