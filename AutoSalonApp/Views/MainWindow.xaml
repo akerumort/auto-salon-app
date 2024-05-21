@@ -1,4 +1,4 @@
-﻿    <Window x:Class="AutoSalonApp.Views.MainWindow"
+﻿<Window x:Class="AutoSalonApp.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:autoSalonApp="clr-namespace:AutoSalonApp"
@@ -7,103 +7,100 @@
         xmlns:converters="clr-namespace:AutoSalonApp.Converters"
         Title="AutoSalonApp" Height="800" Width="800" MinHeight="800" 
         MinWidth="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
-        <Window.Resources>
-            <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="/Resources/Styles.xaml"/>
-                </ResourceDictionary.MergedDictionaries>
-                <converters:PaymentTypeConverter x:Key="PaymentTypeConverter"/>
-            </ResourceDictionary>
-        </Window.Resources>
-        <Window.Icon>
-            <BitmapImage UriSource="Images/logo.png"/> 
-        </Window.Icon>
-        
-        <Grid>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:PaymentTypeConverter x:Key="PaymentTypeConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Icon>
+        <BitmapImage UriSource="Images/logo.png"/> 
+    </Window.Icon>
+    
+    <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <Menu Grid.Row="0">
+        <MenuItem Header="Меню">
+            <MenuItem Header="Создать БД" Click="CreateDatabaseButton_Click"/>
+            <MenuItem Header="Удалить БД" Click="DeleteDatabaseButton_Click"/>
+            <MenuItem Header="Сохранить в JSON формате" Click="SaveToJSONButton_Click"/>
+            <MenuItem Header="Анализ продаж" Click="OpenSalesChartWindowButton_Click"/>
+        </MenuItem>
+    </Menu>
+
+    <Grid Grid.Row="1">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0">
-            <MenuItem Header="Меню">
-                <MenuItem Header="Создать БД" Click="CreateDatabaseButton_Click"/>
-                <MenuItem Header="Удалить БД" Click="DeleteDatabaseButton_Click"/>
-                <MenuItem Header="Сохранить в JSON формате" Click="SaveToJSONButton_Click"/>
-            </MenuItem>
-        </Menu>
-
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <DataGrid x:Name="CarsDataGrid" Grid.Row="2" Margin="5" AutoGenerateColumns="False" 
-                      SelectionMode="Single" MaxHeight="200" HorizontalAlignment="Stretch" ColumnWidth="*">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding CarId}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Бренд" Binding="{Binding Brand}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Модель" Binding="{Binding Model}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Год выпуска" Binding="{Binding Year}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Цена" Binding="{Binding Price}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" IsReadOnly="True"/>
-                    <DataGridCheckBoxColumn Header="Продана (нет в наличии)" Binding="{Binding IsSold}" 
-                                            IsReadOnly="True"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <DataGrid x:Name="OrdersDataGrid" Grid.Row="4" Margin="5" AutoGenerateColumns="False"  
-                      MaxHeight="200" HorizontalAlignment="Stretch" ColumnWidth="*">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID заказа" Binding="{Binding OrderId}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="ID машины" Binding="{Binding CarId}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Машина" Binding="{Binding BrandAndModel}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Дата заказа" Binding="{Binding OrderDate, 
-                    StringFormat={}{0:dd.MM.yyyy HH:mm}}" IsReadOnly="True"/>
-                    
-                    <DataGridTextColumn Header="Оплата" Binding="{Binding PaymentType, 
-                    Converter={StaticResource PaymentTypeConverter}}" IsReadOnly="True"/>
-                    
-                    <DataGridTextColumn Header="Срок кредита" Binding="{Binding CreditMonths}" 
+        <TextBlock Grid.Row="0" Text="Машины" Margin="5" FontWeight="Bold" FontSize="16" 
+                   HorizontalAlignment="Center"/>
+        <DataGrid x:Name="CarsDataGrid" Grid.Row="2" Margin="5" AutoGenerateColumns="False" 
+                  SelectionMode="Single" MaxHeight="270" HorizontalAlignment="Stretch" ColumnWidth="*"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding CarId}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Бренд" Binding="{Binding Brand}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Model}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Год выпуска" Binding="{Binding Year}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="Продана (нет в наличии)" Binding="{Binding IsSold}" 
                                         IsReadOnly="True"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            
-            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Button x:Name="PlaceOrderButton" Content="Оформить заказ" Click="PlaceOrderButton_Click" Margin="5"/>
-                <Button x:Name="EditOrderButton" Content="Редактировать заказ" Click="EditOrderButton_Click" Margin="5"/>
-            </StackPanel>
-            
-            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <TextBox x:Name="SearchTextBox" Width="200" Margin="5" VerticalContentAlignment="Center"/>
-                <Button x:Name="SearchAllButton" Content="Поиск" Click="SearchAllButton_Click" Margin="5" />
-                <Button Content="Расш. поиск" Click="SearchButton_Click" Margin="5"/>
-            </StackPanel>
-            
-            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Button x:Name="AddCarButton" Content="Добавить машину" Click="AddCarButton_Click" Margin="5"/>
-                <Button x:Name="EditCarButton" Content="Редактировать машину" Click="EditCarButton_Click" Margin="5"/>
-            </StackPanel>
-            
-            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <TextBox x:Name="SearchCarTextBox" Width="200" Margin="5" VerticalContentAlignment="Center"/>
-                <Button x:Name="SearchAllCarsButton" Content="Поиск" Click="SearchAllCarsButton_Click" Margin="5" />
-                <Button Content="Расш. поиск" Click="SearchCarButton_Click" Margin="5"/>
-            </StackPanel>
-            
-            <chartingToolkit:Chart Grid.Row="5" Name="SalesChart" Title="Продажи по годам" HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch" Margin="10">
-                <chartingToolkit:Chart.Series>
-                    <chartingToolkit:PieSeries Title="Проданные автомобили" ItemsSource="{Binding Sales}" 
-                                               DependentValuePath="Value" IndependentValuePath="Key"/>
-                </chartingToolkit:Chart.Series>
-            </chartingToolkit:Chart>
-        </Grid>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <TextBlock Grid.Row="3" Text="Заказы" Margin="5" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+        <DataGrid x:Name="OrdersDataGrid" Grid.Row="5" Margin="5" AutoGenerateColumns="False"  
+                  MaxHeight="270" HorizontalAlignment="Stretch" ColumnWidth="*"  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID заказа" Binding="{Binding OrderId}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="ID машины" Binding="{Binding CarId}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Машина" Binding="{Binding BrandAndModel}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата заказа" Binding="{Binding OrderDate, 
+                StringFormat={}{0:dd.MM.yyyy HH:mm}}" IsReadOnly="True"/>
+                
+                <DataGridTextColumn Header="Оплата" Binding="{Binding PaymentType, 
+                Converter={StaticResource PaymentTypeConverter}}" IsReadOnly="True"/>
+                
+                <DataGridTextColumn Header="Срок кредита" Binding="{Binding CreditMonths}" 
+                                    IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button x:Name="PlaceOrderButton" Content="Оформить заказ" Click="PlaceOrderButton_Click" Margin="5"/>
+            <Button x:Name="EditOrderButton" Content="Редактировать заказ" Click="EditOrderButton_Click" Margin="5"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" VerticalContentAlignment="Center"/>
+            <Button x:Name="SearchAllButton" Content="Поиск" Click="SearchAllButton_Click" Margin="5" />
+            <Button Content="Расш. поиск" Click="SearchButton_Click" Margin="5"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button x:Name="AddCarButton" Content="Добавить машину" Click="AddCarButton_Click" Margin="5"/>
+            <Button x:Name="EditCarButton" Content="Редактировать машину" Click="EditCarButton_Click" Margin="5"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <TextBox x:Name="SearchCarTextBox" Width="200" Margin="5" VerticalContentAlignment="Center"/>
+            <Button x:Name="SearchAllCarsButton" Content="Поиск" Click="SearchAllCarsButton_Click" Margin="5" />
+            <Button Content="Расш. поиск" Click="SearchCarButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
     </Grid>
 </Window>
