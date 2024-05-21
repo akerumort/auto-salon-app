@@ -125,5 +125,17 @@ public class MainWindowController
         }
     }
     
-    
+    /// <summary>
+    /// Метод для проверки на существование базы данных.
+    /// </summary>
+    public bool CheckDatabaseExistence()
+    {
+        if (!IsDatabaseCreated())
+        {
+            MessageBox.Show("Вы не можете проводить какие-либо действия, " +
+                            "т.к. база данных не была создана!");
+            return false;
+        }
+        return true;
+    }
 }
