@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AutoSalonApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e15ad25c559a86566f900599e5bf68f64cedefb")]
 [assembly: System.Reflection.AssemblyProductAttribute("AutoSalonApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AutoSalonApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

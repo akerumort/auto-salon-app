@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-G:\Rider\myProjects\AutoSalonApp\AutoSalonApp\obj\Debug\net8.0-windows\
+C:\Users\akeru\Documents\GitHub\auto-salon-app\AutoSalonApp\obj\Debug\net8.0-windows\
 AutoSalonApp
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-G:\Rider\myProjects\AutoSalonApp\AutoSalonApp\Views\App.xaml
-91456667046
+C:\Users\akeru\Documents\GitHub\auto-salon-app\AutoSalonApp\Views\App.xaml
+10-30649242
 
-231178031832
-226-1792032565
-Resources\Styles.xaml;Views\AddCarWindow.xaml;Views\EditCarWindow.xaml;Views\EditOrderWindow.xaml;Views\MainWindow.xaml;Views\OrderWindow.xaml;Views\SearchCarWindow.xaml;Views\SearchOrderWindow.xaml;Views\WelcomeWindow.xaml;
+24-66537319
+226-555933891
+Resources\Styles.xaml;Views\AddCarWindow.xaml;Views\EditCarWindow.xaml;Views\EditOrderWindow.xaml;Views\MainWindow.xaml;Views\OrderWindow.xaml;Views\SalesChartWindow.xaml;Views\SearchCarWindow.xaml;Views\SearchOrderWindow.xaml;Views\WelcomeWindow.xaml;
 
 False
 
